@@ -64,7 +64,7 @@ jobs:
           }
 
           class _HomeScreenState extends State<HomeScreen> {
-            final String apiKey = "AQ.Ab8RN6Kqqma612Ui4gfE8DZvAcO35FY0dPPrtrDsqT1ItNp3-g"; 
+            final String apiKey = "AQ.Ab8RN6KVmthzFCVijY10EXnaPtMQ4_bTG9nEChiv64F2ufjx0g"; 
 
             File? _selectedImage;
             final TextEditingController _locationController = TextEditingController();
