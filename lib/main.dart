@@ -70,7 +70,7 @@ class _HomeScreenState extends State<HomeScreen> {
       final base64Image = base64Encode(bytes);
 
       final url = Uri.parse(
-  'https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key=$apiKey',
+  'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=$apiKey',
 );
 
       final prompt = "Lis les communes/wilayas présentes sur cette capture d'écran. "
