@@ -1,9 +1,28 @@
-import 'dart:convert';
+import 'package0ageolocator/geolocator.dart';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 
+Future<Position> _determinePosition() async {
+  bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
+  if (!serviceEnabled) {
+    return Future.error('Le service de localisation est désactivé.');
+  }
+
+  LocationPermission permission = await Geolocator.checkPermission();
+  if (permission == LocationPermission.denied) {
+    permission = await Geolocator.requestPermission();
+    if (permission == LocationPermission.denied) {
+      return Future.error('Les permissions de localisation sont refusées.');
+    }
+  }
+
+  return await Geolocator.getCurrentPosition();
+}
+// Votre classe Flutter habituelle commence juste après
+class MyApp extends StatelessWidget {
+  // ...
 void main() {
   runApp(const DeliveryApp());
 }
@@ -43,28 +62,18 @@ class _HomeScreenState extends State<HomeScreen> {
 
   final ImagePicker _picker = ImagePicker();
 
-  Future<void> _pickImage() async {
-    final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
-    if (image != null) {
-      setState(() {
-        _selectedImage = File(image.path);
-      });
-    }
-  }
+  Future<void> _analyzeImage() async {
+  // Collez ces lignes ICI :
+  Position position = await _determinePosition();
 
-  Future<void> _analyzeAndSort() async {
-    if (_selectedImage == null || _locationController.text.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Veuillez sélectionner une image et indiquer votre position.')),
-      );
-      return;
-    }
+  final prompt = '''
+Ma position GPS actuelle est : Latitude ${position.latitude}, Longitude ${position.longitude}.
+Analyse cette capture d'écran contenant plusieurs communes/adresses.
+Calcule et classe l'itinéraire de la commune la plus proche de ma position jusqu'à la plus éloignée.
+''';
 
-    setState(() {
-      _isLoading = true;
-      _result = "";
-    });
-
+  // ... le reste de votre code qui envoie à Gemini
+}
     try {
       final bytes = await _selectedImage!.readAsBytes();
       final base64Image = base64Encode(bytes);
