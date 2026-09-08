@@ -30,7 +30,7 @@ jobs:
         run: flutter pub get
 
       - name: Recreate Android files
-        run: flutter create . --platforms=android
+        run: flutter create . --project-name=app_livraison1 --platforms=android
 
       - name: Build APK
         run: flutter build apk --release
