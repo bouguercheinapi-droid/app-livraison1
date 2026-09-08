@@ -29,8 +29,9 @@ jobs:
       - name: Recreate Android files
         run: flutter create . --project-name=app_livraison1 --platforms=android
 
-      - name: Update Kotlin version
+      - name: Force Kotlin 1.9.10 version
         run: |
+          sed -i 's/id "org.jetbrains.kotlin.android" version .*/id "org.jetbrains.kotlin.android" version "1.9.10" apply false/' android/build.gradle || true
           sed -i 's/ext.kotlin_version = .*/ext.kotlin_version = "1.9.10"/' android/build.gradle || true
 
       - name: Install dependencies
