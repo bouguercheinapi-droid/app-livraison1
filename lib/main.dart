@@ -34,7 +34,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   // N'oubliez pas de remplacer cette valeur par votre vraie clé Google AI Studio
-  final String apiKey = "VOTRE_CLE_API_ICI"; 
+  final String apiKey = "AQ.Ab8RN6Kqqma612Ui4gfE8DZvAcO35FY0dPPrtrDsqT1ItNp3-g"; 
 
   File? _selectedImage;
   final TextEditingController _locationController = TextEditingController();
