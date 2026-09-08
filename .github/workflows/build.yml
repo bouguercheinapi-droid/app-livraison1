@@ -26,11 +26,11 @@ jobs:
           flutter-version: '3.19.x'
           channel: 'stable'
 
+      - name: Recreate Android files (Embedding V2)
+        run: flutter create . --project-name=app_livraison1 --platforms=android
+
       - name: Install dependencies
         run: flutter pub get
-
-      - name: Recreate Android files
-        run: flutter create . --project-name=app_livraison1 --platforms=android
 
       - name: Build APK
         run: flutter build apk --release
