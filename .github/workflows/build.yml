@@ -29,10 +29,10 @@ jobs:
       - name: Recreate Android files
         run: flutter create . --project-name=app_livraison1 --platforms=android
 
-      - name: Force Kotlin Version
+      - name: Force Kotlin Version in Gradle Properties
         run: |
+          echo "android.suppressKotlinVersionCompatibilityCheck=true" >> android/gradle.properties
           sed -i 's/ext.kotlin_version = .*/ext.kotlin_version = "1.9.10"/' android/build.gradle || true
-          sed -i 's/id "org.jetbrains.kotlin.android" version .*/id "org.jetbrains.kotlin.android" version "1.9.10" apply false/' android/build.gradle || true
           sed -i 's/id "org.jetbrains.kotlin.android" version .*/id "org.jetbrains.kotlin.android" version "1.9.10" apply false/' android/settings.gradle || true
 
       - name: Install dependencies
