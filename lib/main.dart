@@ -83,7 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
       final base64Image = base64Encode(bytes);
 
       final url = Uri.parse(
-        'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=$_apiKey',
+        'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=$_apiKey',
       );
 
       final response = await http.post(
